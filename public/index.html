@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Key Detection</title>
+  <title>Key Detection </title>
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+  <!-- We put a script tag in the head if it's something that we want to access? -->
 </head>
 <body>
 <script>
+  const keysPressed = [];
+  const secretPassword = 'willpac828';
+
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    keysPressed.push(e.key);
+    // below seems to make more sense than how Wes did it.
+    keysPressed.splice(0, keysPressed.length - secretPassword.length);
+    if(keysPressed.join('').includes(secretPassword)) {
+      console.log('ya done did it!');
+      cornify_add();
+    };
+    console.log(keysPressed);
+  })
 </script>
 </body>
 </html>
